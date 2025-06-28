@@ -1,15 +1,3 @@
 {
-  "version": 2,
-  "functions": {
-    "api/github-auth.js": {
-      "runtime": "nodejs18.x"
-    }
-  },
-  "routes": [
-    {
-      "src": "/api/github-auth",
-      "methods": ["GET", "POST"],
-      "dest": "/api/github-auth.js"
-    }
-  ]
+  "version": 2
 }

@@ -1,6 +1,18 @@
 const axios = require("axios");
 
 module.exports = async (req, res) => {
+  // Set CORS headers
+  const allowedOrigin = process.env.FRONTEND_DOMAIN || "http://localhost:3000";
+  res.setHeader("Access-Control-Allow-Origin", allowedOrigin);
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  res.setHeader("Access-Control-Allow-Credentials", "true");
+
+  // Handle preflight OPTIONS request
+  if (req.method === "OPTIONS") {
+    return res.status(200).end();
+  }
+
   const { code } = req.method === "POST" ? req.body : req.query;
 
   if (!code) {

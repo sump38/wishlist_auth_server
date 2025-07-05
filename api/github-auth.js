@@ -16,7 +16,15 @@ module.exports = async (req, res) => {
   const { code } = req.method === "POST" ? req.body : req.query;
 
   if (!code) {
-    return res.status(400).json({ error: "Missing code" });
+    const response = {
+      FRONTEND_DOMAIN: process.env.FRONTEND_DOMAIN || "http://localhost:3000",
+      client_id: process.env.GITHUB_CLIENT_ID,
+      client_secret: process.env.GITHUB_CLIENT_SECRET,
+    }
+
+
+    // return res.status(400).json({ error: "Missing code" });
+    return res.status(400).json(response);
   }
 
   try {
